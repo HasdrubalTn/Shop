@@ -3,8 +3,9 @@
     "Docker Compose": {
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
-      "composeLaunchAction": "None",
+      "composeLaunchAction": "LaunchBrowser",
       "composeLaunchServiceName": "catalog.api",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
       "serviceActions": {
         "catalog.api": "StartDebugging",
         "catalogdb": "StartWithoutDebugging"
