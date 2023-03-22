@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Ordering.API.Extensions;
 using Ordering.Application;
 using Ordering.Infrastructure;
@@ -21,6 +22,12 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
+app.MigrateDatabase<OrderContext>((context, services) =>
+{
+    var logger = services.GetService<ILogger<OrderContextSeed>>();
+    OrderContextSeed.SeedAsync(context, logger).Wait();
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -31,11 +38,5 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MigrateDatabase<OrderContext>((context, services) =>
-{
-    var logger = services.GetService<ILogger<OrderContextSeed>>();
-    OrderContextSeed.SeedAsync(context, logger).Wait();
-});
 
 app.Run();

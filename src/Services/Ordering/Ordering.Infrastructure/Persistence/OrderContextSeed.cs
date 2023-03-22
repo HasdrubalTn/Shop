@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Ordering.Domain.Entities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Persistence
 {
@@ -22,7 +19,27 @@ namespace Ordering.Infrastructure.Persistence
         {
             return new List<Order>
             {
-                new Order() {UserName = "ams", FirstName = "Ali", LastName = "MSELMI", EmailAddress = "mselmi@outlook.com", AddressLine = "Avenue de France", Country = "France", TotalPrice = 350 }
+                new Order() 
+                {
+                    UserName = "ams", 
+                    FirstName = "Ali", 
+                    LastName = "MSELMI", 
+                    EmailAddress = "mselmi@outlook.com", 
+                    AddressLine = "Avenue de France", 
+                    Country = "France", 
+                    TotalPrice = 350m,
+                    CardName= "",
+                    CardNumber ="122223",
+                    CreatedBy = "Ali, MSELMI",
+                    CreatedDate = DateTime.Now,
+                    CVV = "CCV",
+                    Expiration = "NA",
+                    LastModifiedBy = "Ali, MSELMI",
+                    LastModifiedDate = DateTime.Now,
+                    PaymentMethod = 1,
+                    State = "Shipped",
+                    ZipCode = "75015"
+                }
             };
         }
     }

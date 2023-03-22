@@ -15,6 +15,15 @@ namespace Ordering.Infrastructure.Persistence
 
         public DbSet<Order> Orders { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.TotalPrice)
+                .HasColumnType("decimal(18,2)");
+        }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries<EntityBase>())

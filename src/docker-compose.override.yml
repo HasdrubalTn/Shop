@@ -30,11 +30,11 @@ services:
   orderdb:
     container_name: orderdb
     environment:
-        SA_PASSWORD: "AMS12345678"
+        MSSQL_SA_PASSWORD: "AMS12345678"
         ACCEPT_EULA: "Y"
     restart: always
     ports:
-        - "1433:1433"
+      - "1433:1433"
 
   pgadmin:
     container_name: pgadmin
@@ -103,9 +103,9 @@ services:
     container_name: ordering.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=AMS12345678" 
+      - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=AMS12345678;Encrypt=False;TrustServerCertificate=true" 
     depends_on:
-        - orderdb
+      - orderdb
     ports:
-        - "8004:80"
+      - "8004:80"
 
