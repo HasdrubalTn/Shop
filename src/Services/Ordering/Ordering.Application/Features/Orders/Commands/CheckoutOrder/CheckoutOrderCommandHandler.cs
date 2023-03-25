@@ -32,9 +32,15 @@ namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
         public async Task<int> Handle(CheckoutOrderCommand request, CancellationToken cancellationToken)
         {
             var orderEntity = _mapper.Map<Order>(request);
+
+            if(orderEntity.LastModifiedDate is null)
+            {
+                orderEntity.LastModifiedDate = DateTime.UtcNow;
+            }
+
             var newOrder = await _orderRepository.AddAsync(orderEntity);
 
-            _logger.LogInformation($"Order {newOrder.Id} is successfully created.");
+            _logger.LogInformation($"Order {newOrder.Id} is successfully created [{newOrder.LastModifiedDate}].");
 
             await SendMail(newOrder);
 
