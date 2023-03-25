@@ -31,8 +31,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // MassTransit-RabbitMQ Configuration
-builder.Services.AddMassTransit(config => {
-    config.UsingRabbitMq((ctx, cfg) => {
+builder.Services.AddMassTransit(config => 
+{
+    config.UsingRabbitMq((ctx, cfg) => 
+    {
         cfg.Host(new Uri(configuration["EventBusSettings:HostAddress"]));
     });
 });
@@ -46,7 +48,7 @@ builder.Services.AddOptions<MassTransitHostOptions>()
     options.WaitUntilStarted = true;
 
     // if specified, limits the wait time when starting the bus
-    options.StartTimeout = TimeSpan.FromSeconds(10);
+    options.StartTimeout = TimeSpan.FromSeconds(60);
 
     // if specified, limits the wait time when stopping the bus
     options.StopTimeout = TimeSpan.FromSeconds(30);

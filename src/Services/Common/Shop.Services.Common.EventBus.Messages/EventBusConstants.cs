@@ -1,6 +1,6 @@
 ﻿namespace Shop.Services.Common.EventBus.Messages
 {
-    public class Constants
+    public class EventBusConstants
     {
         public const string BasketCheckoutQueue = "basketcheckout-queue";
     }
